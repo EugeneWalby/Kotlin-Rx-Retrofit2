@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TaskByAndrew</string>
+    <string name="error_loading_stories">Loading stories error!</string>
 </resources>
