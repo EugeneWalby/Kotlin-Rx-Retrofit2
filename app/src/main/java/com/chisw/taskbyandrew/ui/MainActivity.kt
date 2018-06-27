@@ -3,29 +3,33 @@ package com.chisw.taskbyandrew.ui
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import android.widget.Toast
 import com.chisw.taskbyandrew.R
 import com.chisw.taskbyandrew.network.AlgoliaApiService
 import com.chisw.taskbyandrew.network.model.Model
 import com.chisw.taskbyandrew.ui.adapter.StoriesAdapter
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val tags = "story"
+    companion object {
+        const val TAGS = "story"
+        const val PAGE = 0
+    }
+
     private val algoliaApiService by lazy {
         AlgoliaApiService.create()
     }
-    private var disposable: Disposable? = null
     private val storiesList: ArrayList<String> = ArrayList()
+    private var disposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        loadHistory(0)
+        loadHistory(PAGE)
     }
 
     override fun onPause() {
@@ -34,15 +38,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadHistory(page: Int) {
-        disposable = algoliaApiService.getStoryTitles(page, tags)
-                .concatWith(algoliaApiService.getStoryTitles(page + 1, tags))
+        pbProcessing.visibility = View.VISIBLE
+        disposable = algoliaApiService.getStoryTitles(page, TAGS)
+                .concatWith(algoliaApiService.getStoryTitles(page + 1, TAGS))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
                     fillStoriesList(result)
                     fillRecyclerByStories()
+                    pbProcessing.visibility = View.GONE
                 },
-                        { Toast.makeText(applicationContext, getString(R.string.error_loading_stories), Toast.LENGTH_SHORT).show() }
+                        {
+                            Toast.makeText(applicationContext, getString(R.string.error_loading_stories), Toast.LENGTH_SHORT).show()
+                            pbProcessing.visibility = View.GONE
+                        }
                 )
     }
 
