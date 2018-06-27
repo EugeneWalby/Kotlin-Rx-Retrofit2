@@ -8,6 +8,7 @@ import com.chisw.taskbyandrew.R
 import com.chisw.taskbyandrew.network.AlgoliaApiService
 import com.chisw.taskbyandrew.network.model.Model
 import com.chisw.taskbyandrew.ui.adapter.StoriesAdapter
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadHistory(page: Int) {
         disposable = algoliaApiService.getStoryTitles(page, tags)
+                .concatWith(algoliaApiService.getStoryTitles(page + 1, tags))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
