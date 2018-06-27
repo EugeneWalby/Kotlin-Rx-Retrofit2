@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     companion object {
         const val TAGS = "story"
-        const val PAGE = 0
+        const val PAGE = 1
     }
 
     private val algoliaApiService by lazy {
