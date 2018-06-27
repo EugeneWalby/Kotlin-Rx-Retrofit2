@@ -39,8 +39,8 @@ class TitlesOfStoriesActivity: AppCompatActivity() {
 
     private fun loadHistory(page: Int) {
         pbProcessing.visibility = View.VISIBLE
-        disposable = algoliaApiService.getStoryTitles(page, TAGS)
-                .concatWith(algoliaApiService.getStoryTitles(page + 1, TAGS))
+        disposable = algoliaApiService.getTitlesOfStories(page, TAGS)
+                .concatWith(algoliaApiService.getTitlesOfStories(page + 1, TAGS))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->

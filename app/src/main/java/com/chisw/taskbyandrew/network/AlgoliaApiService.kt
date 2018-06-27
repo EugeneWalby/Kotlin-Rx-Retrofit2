@@ -11,8 +11,8 @@ import retrofit2.http.Query
 
 interface AlgoliaApiService {
     @GET("search_by_date")
-    fun getStoryTitles(@Query("page") page: Int,
-                       @Query("tags") tags: String): Single<Model.HitsResponse>
+    fun getTitlesOfStories(@Query("page") page: Int,
+                           @Query("tags") tags: String): Single<Model.HitsResponse>
 
     companion object {
         fun create(): AlgoliaApiService {
