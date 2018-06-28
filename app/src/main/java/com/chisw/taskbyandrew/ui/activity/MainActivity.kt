@@ -1,15 +1,14 @@
-package com.chisw.taskbyandrew.ui
+package com.chisw.taskbyandrew.ui.activity
 
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.chisw.taskbyandrew.R
+import com.chisw.taskbyandrew.ui.activity.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
     private var selectedSpinnerItem: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,11 +40,10 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         btnOK.setOnClickListener {
             when (selectedSpinnerItem) {
                 0 -> {
-                    val intent = Intent(this, TitlesOfStoriesActivity::class.java)
-                    startActivity(intent)
+                    moveToScreen(TitlesOfStoriesActivity())
                 }
                 1 -> {
-
+                    moveToScreen(AuthorsWithKarmaActivity())
                 }
                 2 -> {
 

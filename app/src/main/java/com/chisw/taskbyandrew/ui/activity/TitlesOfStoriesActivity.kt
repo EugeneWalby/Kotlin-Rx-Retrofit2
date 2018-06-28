@@ -1,4 +1,4 @@
-package com.chisw.taskbyandrew.ui
+package com.chisw.taskbyandrew.ui.activity
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
