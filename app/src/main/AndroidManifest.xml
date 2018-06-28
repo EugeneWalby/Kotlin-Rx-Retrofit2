@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.TitlesOfStoriesActivity" />
+        <activity android:name=".ui.AuthorsWithKarmaActivity" />
     </application>
 
 </manifest>

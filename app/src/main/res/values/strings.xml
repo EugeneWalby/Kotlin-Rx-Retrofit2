@@ -4,7 +4,16 @@
     <string name="label_ok">OK</string>
 
     <string-array name="titles_of_tasks">
-        <item>Titles of Histories (pages 1,2)</item>
-        <item>Next Task</item>
+        <item>Titles of Stories (pages 1,2)</item>
+        <item>Author's info with karma</item>
+        <item>Bang with Exception</item>
+        <item>Bang without Exception</item>
+        <item>Maybe to Single</item>
+        <item>Source Extensions + Composite</item>
+        <item>Accumulation of emitted values</item>
+        <item>Executors</item>
+        <item>Subscribing of emitted values</item>
+        <item>Subject</item>
+        <item>Combining to new model</item>
     </string-array>
 </resources>
