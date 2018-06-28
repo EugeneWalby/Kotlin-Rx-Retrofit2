@@ -1,10 +1,10 @@
-package com.chisw.taskbyandrew.ui.activity
+package com.chisw.taskbyandrew.ui.activity.task2
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.chisw.taskbyandrew.R
+import com.chisw.taskbyandrew.ui.activity.base.BaseActivity
 
-class AuthorsWithKarmaActivity: AppCompatActivity() {
+class AuthorsWithKarmaActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authors_with_karma)

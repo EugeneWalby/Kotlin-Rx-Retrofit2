@@ -18,8 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.TitlesOfStoriesActivity" />
-        <activity android:name=".ui.activity.AuthorsWithKarmaActivity" />
+        <activity android:name=".ui.activity.task1.TitlesOfStoriesActivity" />
+        <activity android:name=".ui.activity.task2.AuthorsWithKarmaActivity" />
+        <activity android:name=".ui.activity.task3.BangWithExceptionActivity" />
+        <activity android:name=".ui.activity.task4.BangWithoutExceptionActivity" />
+        <activity android:name=".ui.activity.task5.MaybeToSingleActivity" />
+        <activity android:name=".ui.activity.task6.SourceExtensionsWithCompositeActivity" />
+        <activity android:name=".ui.activity.task7.EmittedValuesAccumulationActivity" />
+        <activity android:name=".ui.activity.task8.ExecutorsActivity" />
+        <activity android:name=".ui.activity.task9.EmittedValuesSubscribingActivity" />
+        <activity android:name=".ui.activity.task10.SubjectActivity" />
+        <activity android:name=".ui.activity.task11.NewModelCombiningActivity" />
     </application>
 
 </manifest>

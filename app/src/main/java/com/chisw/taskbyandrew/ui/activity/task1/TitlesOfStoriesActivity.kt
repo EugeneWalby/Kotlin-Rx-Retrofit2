@@ -1,20 +1,20 @@
-package com.chisw.taskbyandrew.ui.activity
+package com.chisw.taskbyandrew.ui.activity.task1
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.chisw.taskbyandrew.R
 import com.chisw.taskbyandrew.network.AlgoliaApiService
 import com.chisw.taskbyandrew.network.model.Model
+import com.chisw.taskbyandrew.ui.activity.base.BaseActivity
 import com.chisw.taskbyandrew.ui.adapter.StoriesAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_titles_of_stories.*
 
-class TitlesOfStoriesActivity: AppCompatActivity() {
+class TitlesOfStoriesActivity : BaseActivity() {
     companion object {
         const val TAGS = "story"
         const val PAGE = 1

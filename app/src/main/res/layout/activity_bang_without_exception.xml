@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chisw.taskbyandrew.ui.activity.task2.AuthorsWithKarmaActivity">
+    tools:context=".ui.activity.task4.BangWithoutExceptionActivity">
 
 </android.support.constraint.ConstraintLayout>

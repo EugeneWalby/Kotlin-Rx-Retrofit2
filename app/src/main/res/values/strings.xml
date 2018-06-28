@@ -10,10 +10,10 @@
         <item>Bang without Exception</item>
         <item>Maybe to Single</item>
         <item>Source Extensions + Composite</item>
-        <item>Accumulation of emitted values</item>
+        <item>Emitted values accumulation</item>
         <item>Executors</item>
-        <item>Subscribing of emitted values</item>
+        <item>Emitted values subscribing</item>
         <item>Subject</item>
-        <item>Combining to new model</item>
+        <item>New model combining</item>
     </string-array>
 </resources>
