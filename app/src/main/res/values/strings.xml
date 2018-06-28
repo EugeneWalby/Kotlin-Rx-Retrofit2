@@ -2,6 +2,8 @@
     <string name="app_name">TaskByAndrew</string>
     <string name="error_loading_stories">Loading stories error!</string>
     <string name="label_ok">OK</string>
+    <string name="bang">Bang!</string>
+    <string name="emit">Emit</string>
 
     <string-array name="titles_of_tasks">
         <item>Titles of Stories (pages 1,2)</item>

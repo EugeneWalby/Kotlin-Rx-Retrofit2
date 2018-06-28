@@ -26,9 +26,12 @@ class TitlesOfStoriesActivity : BaseActivity() {
     private val storiesList: ArrayList<String> = ArrayList()
     private var disposable: Disposable? = null
 
+    override fun provideLayout(): Int {
+        return R.layout.activity_titles_of_stories
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_titles_of_stories)
         loadHistory(PAGE)
     }
 

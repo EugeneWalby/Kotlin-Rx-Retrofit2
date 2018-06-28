@@ -22,9 +22,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
     private var selectedSpinnerItem: Int? = null
 
+    override fun provideLayout(): Int {
+        return R.layout.activity_main
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         createListOfTasks()
         createOnBtnOKClickListener()
     }
