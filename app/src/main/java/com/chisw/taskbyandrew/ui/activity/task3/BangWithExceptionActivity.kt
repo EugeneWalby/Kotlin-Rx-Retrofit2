@@ -16,7 +16,7 @@ class BangWithExceptionActivity : BaseBangActivity() {
 
     override fun createButtonClickListener() {
         btnEmitValue.setOnClickListener {
-            disposable = Single.just("")
+            disposable = Maybe.empty<String>()
                     .map { createSourceOrThrowException(getRandomValue()) }
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
