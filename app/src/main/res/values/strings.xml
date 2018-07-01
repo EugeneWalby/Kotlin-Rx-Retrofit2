@@ -7,6 +7,7 @@
     <string name="msg_error">Error!</string>
     <string name="msg_subscribed">Subscribed</string>
     <string name="msg_illegal_argument_exception">Illegal argument exception!</string>
+    <string name="msd_defaul_single">You\'re live</string>
 
     <string-array name="titles_of_tasks">
         <item>Titles of Stories (pages 1,2)</item>

@@ -1,6 +1,5 @@
 package com.chisw.taskbyandrew.ui.activity.task4
 
-import android.widget.Toast
 import com.chisw.taskbyandrew.R
 import com.chisw.taskbyandrew.ui.activity.base.BaseBangActivity
 import io.reactivex.Maybe
