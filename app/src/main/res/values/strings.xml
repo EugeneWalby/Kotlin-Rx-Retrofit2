@@ -5,6 +5,7 @@
     <string name="bang">Bang!</string>
     <string name="emit">Emit</string>
     <string name="msg_error">Error!</string>
+    <string name="msg_subscribed">Subscribed</string>
     <string name="msg_illegal_argument_exception">Illegal argument exception!</string>
 
     <string-array name="titles_of_tasks">
