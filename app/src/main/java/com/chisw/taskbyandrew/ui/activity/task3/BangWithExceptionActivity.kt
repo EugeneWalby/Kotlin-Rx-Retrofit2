@@ -16,7 +16,7 @@ class BangWithExceptionActivity : BaseBangActivity() {
 
     override fun createButtonClickListener() {
         btnEmitValue.setOnClickListener {
-            disposable = Maybe.just("")
+            val disposable = Maybe.just("")
                     .map {
                         createSourceOrThrowException(getRandomValue())
                     }
@@ -29,6 +29,7 @@ class BangWithExceptionActivity : BaseBangActivity() {
                             {
                                 Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                             })
+            addDisposable(disposable)
         }
     }
 

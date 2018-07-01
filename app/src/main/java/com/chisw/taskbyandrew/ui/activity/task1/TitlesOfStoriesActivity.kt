@@ -25,7 +25,6 @@ class TitlesOfStoriesActivity : BaseActivity() {
         AlgoliaApiService.create()
     }
     private val storiesList: ArrayList<String> = ArrayList()
-    private var disposable: Disposable? = null
 
     override fun provideLayout(): Int {
         return R.layout.activity_titles_of_stories
@@ -36,14 +35,9 @@ class TitlesOfStoriesActivity : BaseActivity() {
         loadHistory(PAGE)
     }
 
-    override fun onPause() {
-        super.onPause()
-        disposable?.dispose()
-    }
-
     private fun loadHistory(page: Int) {
         pbProcessing.visibility = View.VISIBLE
-        disposable = algoliaApiService.getTitlesOfStories(page, TAGS)
+        val disposable = algoliaApiService.getTitlesOfStories(page, TAGS)
                 .concatWith(algoliaApiService.getTitlesOfStories(page + 1, TAGS))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -57,6 +51,7 @@ class TitlesOfStoriesActivity : BaseActivity() {
                             pbProcessing.visibility = View.GONE
                         }
                 )
+        addDisposable(disposable)
     }
 
     private fun fillStoriesList(result: Model.HitsResponse) {

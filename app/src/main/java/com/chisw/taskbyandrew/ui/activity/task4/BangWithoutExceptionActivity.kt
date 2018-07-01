@@ -16,13 +16,14 @@ class BangWithoutExceptionActivity : BaseBangActivity() {
 
     override fun createButtonClickListener() {
         btnEmitValue.setOnClickListener {
-            disposable = createSourceOrEmpty(getRandomValue())
+           val disposable = createSourceOrEmpty(getRandomValue())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             {
                                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
                             })
+            addDisposable(disposable)
         }
     }
 
