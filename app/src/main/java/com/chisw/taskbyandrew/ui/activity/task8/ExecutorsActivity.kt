@@ -15,6 +15,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_executors.*
 import java.util.concurrent.Executors
 
+// done with question
 class ExecutorsActivity : BaseActivity() {
     companion object {
         const val LOG_TAG = "LOG"

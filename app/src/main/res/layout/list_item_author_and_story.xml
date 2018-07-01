@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tvAuthorUsername"
+        android:layout_width="@dimen/dp0"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:padding="@dimen/dp14"
+        android:textSize="@dimen/sp14"
+        tools:text="username" />
+
+    <TextView
+        android:id="@+id/tvAuthorKarma"
+        android:layout_width="@dimen/dp0"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:padding="@dimen/dp14"
+        android:textSize="@dimen/sp14"
+        tools:text="karma" />
+
+    <TextView
+        android:id="@+id/tvStoryTitle"
+        android:layout_width="@dimen/dp0"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:padding="@dimen/dp14"
+        android:textSize="@dimen/sp14"
+        tools:text="story" />
+</LinearLayout>
