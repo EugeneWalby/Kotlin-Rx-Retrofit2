@@ -27,8 +27,8 @@ class BangWithoutExceptionActivity : BaseBangActivity() {
 
     private fun createSourceOrEmpty(action: Boolean): Maybe<String> {
         if (action) {
-            return Maybe.empty()
+            return Maybe.just(getString(R.string.bang))
         }
-        return Maybe.just(getString(R.string.bang))
+        return Maybe.empty()
     }
 }

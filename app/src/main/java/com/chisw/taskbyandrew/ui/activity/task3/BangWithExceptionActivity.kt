@@ -35,8 +35,8 @@ class BangWithExceptionActivity : BaseBangActivity() {
 
     private fun createSourceOrThrowException(action: Boolean): Maybe<String> {
         if (action) {
-            throw IllegalArgumentException(getString(R.string.msg_illegal_argument_exception))
+            return Maybe.just(getString(R.string.bang))
         }
-        return Maybe.just(getString(R.string.bang))
+        throw IllegalArgumentException(getString(R.string.msg_illegal_argument_exception))
     }
 }
