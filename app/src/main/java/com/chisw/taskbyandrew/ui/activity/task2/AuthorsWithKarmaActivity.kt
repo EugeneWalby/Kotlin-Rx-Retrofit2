@@ -16,11 +16,13 @@ class AuthorsWithKarmaActivity : BaseActivity() {
     companion object {
         const val TAGS = "story"
         const val PAGE = 0
+        const val KARMA_DEF_VALUE = 3000
     }
 
     private val algoliaApiService by lazy {
         AlgoliaApiService.create()
     }
+
     private val authorsInfo: ArrayList<Model.UserResponse> = ArrayList()
 
     override fun provideLayout(): Int {
@@ -44,9 +46,11 @@ class AuthorsWithKarmaActivity : BaseActivity() {
                                         .subscribeOn(Schedulers.io())
                                         .observeOn(AndroidSchedulers.mainThread())
                                         .subscribe(
-                                                {
-                                                    t -> authorsInfo.add(t)
-                                                    fillRecyclerByAuthors()
+                                                { t ->
+                                                    if (t.karma > KARMA_DEF_VALUE) {
+                                                        authorsInfo.add(t)
+                                                        fillRecyclerByAuthors()
+                                                    }
                                                 }
                                         )
                             }
