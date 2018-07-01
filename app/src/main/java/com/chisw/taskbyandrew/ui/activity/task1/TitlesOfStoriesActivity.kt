@@ -2,13 +2,16 @@ package com.chisw.taskbyandrew.ui.activity.task1
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.chisw.taskbyandrew.R
 import com.chisw.taskbyandrew.network.AlgoliaApiService
 import com.chisw.taskbyandrew.network.model.Model
 import com.chisw.taskbyandrew.ui.activity.base.BaseActivity
+import com.chisw.taskbyandrew.ui.activity.task6.SourceExtensionsWithCompositeActivity
 import com.chisw.taskbyandrew.ui.adapter.StoriesAdapter
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
