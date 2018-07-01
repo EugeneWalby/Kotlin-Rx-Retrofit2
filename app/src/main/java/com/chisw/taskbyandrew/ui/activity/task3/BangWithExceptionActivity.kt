@@ -1,6 +1,5 @@
 package com.chisw.taskbyandrew.ui.activity.task3
 
-import android.widget.Toast
 import com.chisw.taskbyandrew.R
 import com.chisw.taskbyandrew.ui.activity.base.BaseBangActivity
 import io.reactivex.Maybe
@@ -24,10 +23,10 @@ class BangWithExceptionActivity : BaseBangActivity() {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             {
-                                it.map { Toast.makeText(this, it, Toast.LENGTH_SHORT).show() }.subscribe()
+                                it.map { showToast(it) }.subscribe()
                             },
                             {
-                                Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                                showToast(it.message)
                             })
             addDisposable(disposable)
         }

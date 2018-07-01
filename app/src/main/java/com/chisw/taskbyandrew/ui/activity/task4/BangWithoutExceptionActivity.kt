@@ -21,7 +21,7 @@ class BangWithoutExceptionActivity : BaseBangActivity() {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             {
-                                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                                showToast(it)
                             })
             addDisposable(disposable)
         }

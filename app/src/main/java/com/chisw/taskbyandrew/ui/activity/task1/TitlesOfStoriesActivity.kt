@@ -47,7 +47,7 @@ class TitlesOfStoriesActivity : BaseActivity() {
                     pbProcessing.visibility = View.GONE
                 },
                         {
-                            Toast.makeText(applicationContext, getString(R.string.error_loading_stories), Toast.LENGTH_SHORT).show()
+                            showToast(getString(R.string.error_loading_stories))
                             pbProcessing.visibility = View.GONE
                         }
                 )
