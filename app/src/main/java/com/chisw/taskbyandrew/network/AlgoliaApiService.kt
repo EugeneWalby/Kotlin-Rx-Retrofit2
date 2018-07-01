@@ -7,12 +7,16 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface AlgoliaApiService {
     @GET("search_by_date")
-    fun getTitlesOfStories(@Query("page") page: Int,
-                           @Query("tags") tags: String): Single<Model.HitsResponse>
+    fun getStoriesInfo(@Query("page") page: Int,
+                       @Query("tags") tags: String): Single<Model.HitsResponse>
+
+    @GET("users/{username}")
+    fun getAuthorInfo(@Path("username") username: String): Single<Model.UserResponse>
 
     companion object {
         fun create(): AlgoliaApiService {

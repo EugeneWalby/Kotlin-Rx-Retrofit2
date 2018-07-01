@@ -43,13 +43,13 @@ class ExecutorsActivity : BaseActivity() {
         val executor3 = Executors.newSingleThreadExecutor()
 
         val disposable = algoliaApiService
-                .getTitlesOfStories(PAGE, TAGS)
+                .getStoriesInfo(PAGE, TAGS)
                 .doOnSubscribe {
                     Log.d(LOG_TAG + 1, Thread.currentThread().name)
                 }
                 .subscribeOn(Schedulers.from(executor1))
                 .concatWith {
-                    algoliaApiService.getTitlesOfStories(PAGE + 1, TitlesOfStoriesActivity.TAGS)
+                    algoliaApiService.getStoriesInfo(PAGE + 1, TitlesOfStoriesActivity.TAGS)
                 }
                 .doOnSubscribe { Log.d(LOG_TAG + 2, Thread.currentThread().name) }
                 .subscribeOn(Schedulers.from(executor2))

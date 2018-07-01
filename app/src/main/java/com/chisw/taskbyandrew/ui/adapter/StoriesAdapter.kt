@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.chisw.taskbyandrew.R
-import kotlinx.android.synthetic.main.stories_list_item.view.*
+import kotlinx.android.synthetic.main.list_item_stories.view.*
 
 class StoriesAdapter(private val storiesList: ArrayList<String>, private val context: Context)
     : RecyclerView.Adapter<StoriesAdapter.ViewHolder>() {
@@ -16,11 +16,11 @@ class StoriesAdapter(private val storiesList: ArrayList<String>, private val con
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.stories_list_item, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.list_item_stories, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvStoryTitle.text = storiesList.get(position)
+        holder.tvStoryTitle.text = storiesList[position]
     }
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {

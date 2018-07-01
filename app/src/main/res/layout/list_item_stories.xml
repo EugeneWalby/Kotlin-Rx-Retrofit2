@@ -8,6 +8,6 @@
         android:id="@+id/tvStoryTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_16"
-        android:padding="@dimen/padding_16" />
+        android:textSize="@dimen/sp16"
+        android:padding="@dimen/dp16" />
 </LinearLayout>
