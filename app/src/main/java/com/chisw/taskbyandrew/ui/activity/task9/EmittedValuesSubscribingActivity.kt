@@ -31,6 +31,7 @@ class EmittedValuesSubscribingActivity : BaseActivity() {
         val disposable = Observable.intervalRange(START_SEQUENCE_VALUE, SEQUENCE_VALUES_COUNT, EMITTING_INITIAL_DELAY, EMITTING_PERIOD, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { showToast(getString(R.string.msg_subscribed)) }
                 .subscribe(
                         {
                             if (it == 7L) {
@@ -41,7 +42,6 @@ class EmittedValuesSubscribingActivity : BaseActivity() {
                         {
                             showToast(it.message)
                         })
-        showToast(getString(R.string.msg_subscribed))
         addDisposable(disposable)
     }
 }
