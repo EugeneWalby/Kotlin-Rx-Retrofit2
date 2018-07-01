@@ -11,6 +11,9 @@ import io.reactivex.Single
 class SourceExtensionsWithCompositeActivity : BaseActivity() {
     companion object {
         const val LOG_TAG = "LOG"
+        const val SINGLE_MESSAGE = "Single"
+        const val OBSERVABLE_MESSAGE = "Observable"
+        const val MAYBE_MESSAGE = "Maybe"
     }
 
     override fun provideLayout(): Int {
@@ -25,7 +28,7 @@ class SourceExtensionsWithCompositeActivity : BaseActivity() {
     }
 
     private fun createSingle() {
-        val disposable = Single.just("Single")
+        val disposable = Single.just(SINGLE_MESSAGE)
                 .logThread()
                 .divideByThreads()
                 .subscribe({ t -> showToast(t) })
@@ -33,23 +36,17 @@ class SourceExtensionsWithCompositeActivity : BaseActivity() {
     }
 
     private fun createObservable() {
-        val disposable = Observable.just("Observable")
+        val disposable = Observable.just(OBSERVABLE_MESSAGE)
                 .divideByThreads()
                 .subscribe(
                         {
                             showToast(it)
-                        },
-                        {
-                            showToast(it.message)
-                        }, {
-                    showToast("Yeah!")
-                }
-                )
+                        })
         addDisposable(disposable)
     }
 
     private fun createMaybe() {
-        val disposable = Maybe.just("Maybe")
+        val disposable = Maybe.just(MAYBE_MESSAGE)
                 .divideByThreads()
                 .subscribe({ showToast(it) })
         addDisposable(disposable)
