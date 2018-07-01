@@ -8,8 +8,9 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 abstract class BaseActivity : AppCompatActivity() {
+    private var compositeDisposable: CompositeDisposable? = null
+
     abstract fun provideLayout(): Int
-    protected var compositeDisposable: CompositeDisposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
