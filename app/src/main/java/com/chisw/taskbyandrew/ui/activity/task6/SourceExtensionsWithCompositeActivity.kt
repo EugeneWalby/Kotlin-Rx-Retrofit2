@@ -53,8 +53,7 @@ class SourceExtensionsWithCompositeActivity : BaseActivity() {
     }
 
     private fun Single<String>.logThread(): Single<String> {
-        Log.d(LOG_TAG, getString(R.string.log_current_thread) + Thread.currentThread().name)
-        return this
+        return this.doOnSubscribe { Log.d(LOG_TAG, getString(R.string.log_current_thread) + Thread.currentThread().name) }
     }
 
     private fun Single<String>.divideByThreads(): Single<String> {
