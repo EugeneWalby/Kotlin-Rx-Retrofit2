@@ -1,5 +1,6 @@
 package com.chisw.taskbyandrew.ui.activity.task3
 
+import android.util.Log
 import android.widget.Toast
 import com.chisw.taskbyandrew.R
 import com.chisw.taskbyandrew.ui.activity.base.BaseBangActivity
@@ -16,13 +17,15 @@ class BangWithExceptionActivity : BaseBangActivity() {
 
     override fun createButtonClickListener() {
         btnEmitValue.setOnClickListener {
-            disposable = Maybe.empty<String>()
-                    .map { createSourceOrThrowException(getRandomValue()) }
+            disposable = Maybe.just("")
+                    .map {
+                        createSourceOrThrowException(getRandomValue())
+                    }
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             {
-                                Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+                                it.map { Toast.makeText(this, it, Toast.LENGTH_SHORT).show() }.subscribe()
                             },
                             {
                                 Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
@@ -32,7 +35,7 @@ class BangWithExceptionActivity : BaseBangActivity() {
 
     private fun createSourceOrThrowException(action: Boolean): Maybe<String> {
         if (action) {
-            throw IllegalArgumentException()
+            throw IllegalArgumentException(getString(R.string.msg_illegal_argument_exception))
         }
         return Maybe.just(getString(R.string.bang))
     }
