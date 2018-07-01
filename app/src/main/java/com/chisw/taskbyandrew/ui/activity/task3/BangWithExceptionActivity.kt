@@ -1,15 +1,14 @@
 package com.chisw.taskbyandrew.ui.activity.task3
 
-import android.util.Log
 import android.widget.Toast
 import com.chisw.taskbyandrew.R
 import com.chisw.taskbyandrew.ui.activity.base.BaseBangActivity
 import io.reactivex.Maybe
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_bang_without_exception.*
 
+// done
 class BangWithExceptionActivity : BaseBangActivity() {
     override fun provideLayout(): Int {
         return R.layout.activity_bang_with_exception

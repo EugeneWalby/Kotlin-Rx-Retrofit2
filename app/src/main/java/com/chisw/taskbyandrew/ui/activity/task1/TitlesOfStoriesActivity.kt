@@ -14,6 +14,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_titles_of_stories.*
 
+// done
 class TitlesOfStoriesActivity : BaseActivity() {
     companion object {
         const val TAGS = "story"
