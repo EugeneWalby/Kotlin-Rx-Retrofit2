@@ -10,7 +10,6 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.Executors
 
-// just page 0
 class ExecutorsActivity : BaseActivity() {
     companion object {
         const val LOG_TAG = "LOG"

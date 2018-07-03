@@ -7,7 +7,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_bang_without_exception.*
 
-// done
+// +
 class BangWithoutExceptionActivity : BaseBangActivity() {
     override fun provideLayout(): Int {
         return R.layout.activity_bang_without_exception

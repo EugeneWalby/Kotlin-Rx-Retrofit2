@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_emitted_values_accumulation.*
 import java.util.concurrent.TimeUnit
 
-// done
+// +
 class EmittedValuesAccumulationActivity : BaseActivity() {
     companion object {
         const val START_SEQUENCE_VALUE = 0L

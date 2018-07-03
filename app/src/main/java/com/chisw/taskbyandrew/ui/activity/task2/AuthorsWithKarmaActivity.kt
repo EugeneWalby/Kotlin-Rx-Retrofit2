@@ -13,7 +13,6 @@ import io.reactivex.functions.Predicate
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_authors_with_karma.*
 
-// done with question
 class AuthorsWithKarmaActivity : BaseActivity() {
     companion object {
         const val TAGS = "story"

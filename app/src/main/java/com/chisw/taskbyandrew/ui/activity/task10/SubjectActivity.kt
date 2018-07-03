@@ -8,7 +8,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 
-// done
+// +
 class SubjectActivity : BaseActivity() {
     override fun provideLayout(): Int {
         return R.layout.activity_subject
