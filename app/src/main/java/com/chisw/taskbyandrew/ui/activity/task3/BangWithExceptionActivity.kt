@@ -15,15 +15,12 @@ class BangWithExceptionActivity : BaseBangActivity() {
 
     override fun createButtonClickListener() {
         btnEmitValue.setOnClickListener {
-            val disposable = Maybe.just("")
-                    .map {
-                        createSourceOrThrowException(getRandomValue())
-                    }
+            val disposable = createSourceOrThrowException(getRandomValue())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             {
-                                it.map { showToast(it) }.subscribe()
+                                showToast(it)
                             },
                             {
                                 showToast(it.message)
@@ -33,9 +30,12 @@ class BangWithExceptionActivity : BaseBangActivity() {
     }
 
     private fun createSourceOrThrowException(action: Boolean): Maybe<String> {
-        if (action) {
-            return Maybe.just(getString(R.string.bang))
+        return Maybe.create<String> { e ->
+            if (action) {
+                e.onSuccess(getString(R.string.bang))
+            } else {
+                e.onError(IllegalArgumentException())
+            }
         }
-        throw IllegalArgumentException(getString(R.string.msg_illegal_argument_exception))
     }
 }
