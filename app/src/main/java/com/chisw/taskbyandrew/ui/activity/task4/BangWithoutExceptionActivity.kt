@@ -15,7 +15,7 @@ class BangWithoutExceptionActivity : BaseBangActivity() {
 
     override fun createButtonClickListener() {
         btnEmitValue.setOnClickListener {
-           val disposable = createSourceOrEmpty(getRandomValue())
+            val disposable = createSourceOrEmpty(getRandomValue())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
@@ -27,9 +27,12 @@ class BangWithoutExceptionActivity : BaseBangActivity() {
     }
 
     private fun createSourceOrEmpty(action: Boolean): Maybe<String> {
-        if (action) {
-            return Maybe.just(getString(R.string.bang))
+        return Maybe.create { e ->
+            if (action) {
+                e.onSuccess(getString(R.string.bang))
+            } else {
+                e.onComplete()
+            }
         }
-        return Maybe.empty()
     }
 }
