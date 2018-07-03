@@ -9,6 +9,7 @@ import com.chisw.taskbyandrew.network.model.Model
 import com.chisw.taskbyandrew.ui.activity.base.BaseActivity
 import com.chisw.taskbyandrew.ui.adapter.AuthorsAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Predicate
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_authors_with_karma.*
 
@@ -44,14 +45,15 @@ class AuthorsWithKarmaActivity : BaseActivity() {
                         { result ->
                             for (stories in result.hits) {
                                 algoliaApiService.getAuthorInfo(stories.author)
+                                        .filter({ t ->
+                                            t.karma > KARMA_DEF_VALUE
+                                        })
                                         .subscribeOn(Schedulers.io())
                                         .observeOn(AndroidSchedulers.mainThread())
                                         .subscribe(
                                                 { t ->
-                                                    if (t.karma > KARMA_DEF_VALUE) {
-                                                        authorsInfo.add(t)
-                                                        fillRecyclerByAuthors()
-                                                    }
+                                                    authorsInfo.add(t)
+                                                    fillRecyclerByAuthors()
                                                 }
                                         )
                             }

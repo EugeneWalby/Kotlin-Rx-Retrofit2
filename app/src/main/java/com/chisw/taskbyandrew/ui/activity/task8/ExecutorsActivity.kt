@@ -6,7 +6,7 @@ import com.chisw.taskbyandrew.R
 import com.chisw.taskbyandrew.network.AlgoliaApiService
 import com.chisw.taskbyandrew.network.model.Model
 import com.chisw.taskbyandrew.ui.activity.base.BaseActivity
-import com.chisw.taskbyandrew.ui.activity.task1.TitlesOfStoriesActivity
+import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.Executors
 
@@ -36,17 +36,12 @@ class ExecutorsActivity : BaseActivity() {
         val executor2 = Executors.newSingleThreadExecutor()
         val executor3 = Executors.newSingleThreadExecutor()
 
-        val disposable = algoliaApiService
-                .getStoriesInfo(PAGE, TAGS)
-                .doOnSuccess {
-                    logCurrentThread(1)
-                }
-                .subscribeOn(Schedulers.from(executor1))
-                .observeOn(Schedulers.from(executor2))
-                .doOnSuccess { logCurrentThread(2) }
-                .concatWith {
-                    algoliaApiService.getStoriesInfo(PAGE + 1, TitlesOfStoriesActivity.TAGS)
-                }
+        val disposable = Single.merge(algoliaApiService.getStoriesInfo(PAGE, TAGS)
+                .doOnSubscribe { logCurrentThread(1) }
+                .subscribeOn(Schedulers.from(executor1)),
+                algoliaApiService.getStoriesInfo(PAGE + 1, TAGS))
+                .doOnSubscribe { logCurrentThread(2) }
+                .subscribeOn(Schedulers.from(executor2))
                 .observeOn(Schedulers.from(executor3))
                 .subscribe(
                         { result ->
