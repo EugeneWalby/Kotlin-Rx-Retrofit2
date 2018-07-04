@@ -7,7 +7,12 @@ import com.chisw.taskbyandrew.ui.activity.base.BaseActivity
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
+// 1 +
+// 2
+// 3
 class SourceExtensionsWithCompositeActivity : BaseActivity() {
     companion object {
         const val LOG_TAG = "LOG"
@@ -31,6 +36,7 @@ class SourceExtensionsWithCompositeActivity : BaseActivity() {
         val disposable = Single.just(SINGLE_MESSAGE)
                 .logThread()
                 .divideByThreads()
+                .logThread()
                 .subscribe({ t -> showToast(t) })
         addDisposable(disposable)
     }
@@ -53,21 +59,24 @@ class SourceExtensionsWithCompositeActivity : BaseActivity() {
     }
 
     private fun Single<String>.logThread(): Single<String> {
-        return this.doOnSubscribe { Log.d(LOG_TAG, getString(R.string.log_current_thread) + Thread.currentThread().name) }
+        return this.map { t ->
+            Log.d(LOG_TAG, getString(R.string.log_current_thread) + Thread.currentThread().name)
+            t
+        }
     }
+}
 
-    private fun Single<String>.divideByThreads(): Single<String> {
-        return this.subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
-    }
+private fun Single<String>.divideByThreads(): Single<String> {
+    return this.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+}
 
-    private fun Observable<String>.divideByThreads(): Observable<String> {
-        return this.subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
-    }
+private fun Observable<String>.divideByThreads(): Observable<String> {
+    return this.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+}
 
-    private fun Maybe<String>.divideByThreads(): Maybe<String> {
-        return this.subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
-    }
+private fun Maybe<String>.divideByThreads(): Maybe<String> {
+    return this.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 }
