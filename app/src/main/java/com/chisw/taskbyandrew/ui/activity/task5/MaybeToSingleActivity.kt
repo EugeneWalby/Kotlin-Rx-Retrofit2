@@ -24,9 +24,12 @@ class MaybeToSingleActivity : BaseBangActivity() {
     }
 
     private fun createSourceOrEmpty(action: Boolean): Maybe<String> {
-        if (action) {
-            return Maybe.just(getString(R.string.bang))
+        return Maybe.create { e ->
+            if (action) {
+                e.onSuccess(getString(R.string.bang))
+            } else {
+                e.onComplete()
+            }
         }
-        return Maybe.empty()
     }
 }
