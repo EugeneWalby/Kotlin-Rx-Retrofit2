@@ -35,7 +35,6 @@ class AuthorsWithKarmaActivity : BaseActivity() {
         loadHistory(PAGE)
     }
 
-
     private fun loadHistory(page: Int) {
         pbProcessing.visibility = View.VISIBLE
         val disposable = algoliaApiService.getStoriesInfo(page, TAGS)
