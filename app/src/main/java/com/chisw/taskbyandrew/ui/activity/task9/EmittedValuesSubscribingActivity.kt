@@ -9,6 +9,7 @@ import io.reactivex.schedulers.Schedulers
 import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
+// +
 class EmittedValuesSubscribingActivity : BaseActivity() {
     companion object {
         const val START_SEQUENCE_VALUE = 0L

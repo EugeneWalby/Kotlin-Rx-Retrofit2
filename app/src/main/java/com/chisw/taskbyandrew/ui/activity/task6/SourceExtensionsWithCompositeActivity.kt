@@ -11,7 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 // 1 +
-// 2
+// 2 +
 // 3
 class SourceExtensionsWithCompositeActivity : BaseActivity() {
     companion object {
