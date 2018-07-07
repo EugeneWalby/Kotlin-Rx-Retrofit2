@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.chisw.taskbyandrew.R
+import com.chisw.taskbyandrew.R.id.rvStoriesList
 import com.chisw.taskbyandrew.network.AlgoliaApiService
 import com.chisw.taskbyandrew.network.model.Model
 import com.chisw.taskbyandrew.ui.activity.base.BaseActivity
 import com.chisw.taskbyandrew.ui.adapter.AuthorsAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Function
 import io.reactivex.functions.Predicate
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_authors_with_karma.*
@@ -38,24 +40,19 @@ class AuthorsWithKarmaActivity : BaseActivity() {
     private fun loadHistory(page: Int) {
         pbProcessing.visibility = View.VISIBLE
         val disposable = algoliaApiService.getStoriesInfo(page, TAGS)
+                .toObservable()
+                .flatMapIterable { t -> t.hits }
+                .flatMap { t -> algoliaApiService.getAuthorInfo(t.author).toObservable() }
+                .filter { t -> t.karma > KARMA_DEF_VALUE }
+                .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { result ->
-                            for (stories in result.hits) {
-                                algoliaApiService.getAuthorInfo(stories.author)
-                                        .filter({ t ->
-                                            t.karma > KARMA_DEF_VALUE
-                                        })
-                                        .subscribeOn(Schedulers.io())
-                                        .observeOn(AndroidSchedulers.mainThread())
-                                        .subscribe(
-                                                { t ->
-                                                    authorsInfo.add(t)
-                                                    fillRecyclerByAuthors()
-                                                }
-                                        )
+                            for (stories in result) {
+                                authorsInfo.add(stories)
                             }
+                            fillRecyclerByAuthors()
                             pbProcessing.visibility = View.GONE
                         },
                         {
