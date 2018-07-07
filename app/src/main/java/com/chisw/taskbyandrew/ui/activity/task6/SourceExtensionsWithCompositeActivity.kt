@@ -13,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 // 1 +
 // 2 +
 // 3
+// change with generics
 class SourceExtensionsWithCompositeActivity : BaseActivity() {
     companion object {
         const val LOG_TAG = "LOG"

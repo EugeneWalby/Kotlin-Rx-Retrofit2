@@ -10,6 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_authors_with_karma.*
 
+// +
 class NewModelCombiningActivity : BaseActivity() {
     companion object {
         const val TAGS = "story"

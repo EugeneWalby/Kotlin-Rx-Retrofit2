@@ -35,28 +35,31 @@ class ExecutorsActivity : BaseActivity() {
         val executor2 = Executors.newSingleThreadExecutor()
         val executor3 = Executors.newSingleThreadExecutor()
 
-        val disposable = Single.merge(algoliaApiService.getStoriesInfo(PAGE, TAGS)
-                .doOnSubscribe { logCurrentThread(1) }
-                .subscribeOn(Schedulers.from(executor1)),
-                algoliaApiService.getStoriesInfo(PAGE + 1, TAGS))
-                .doOnSubscribe { logCurrentThread(2) }
-                .subscribeOn(Schedulers.from(executor2))
+        val disposable = algoliaApiService.getStoriesInfo(PAGE, TAGS)
+                .logThread()
+                .subscribeOn(Schedulers.from(executor1))
+                .observeOn(Schedulers.from(executor2))
+                .logThread()
+                .concatWith { algoliaApiService.getStoriesInfo(PAGE + 1, TAGS) }
                 .observeOn(Schedulers.from(executor3))
-                .subscribe(
-                        { result ->
-                            logCurrentThread(3)
-                            logTitlesOfStories(result)
-                        })
-        addDisposable(disposable)
-    }
+                .subscribe({ t ->
+                    logTitlesOfStories(t)
+                    Log.d(ExecutorsActivity.LOG_TAG, getString(R.string.log_current_thread) + Thread.currentThread().name)
 
-    private fun logCurrentThread(threadNumber: Int) {
-        Log.d(LOG_TAG + threadNumber, Thread.currentThread().name)
+                })
+        addDisposable(disposable)
     }
 
     private fun logTitlesOfStories(result: Model.HitsResponse) {
         for (i in 0 until result.hits.size) {
             Log.d(LOG_TAG, result.hits[i].title)
+        }
+    }
+
+    private fun <T> Single<T>.logThread(): Single<T> {
+        return this.map { t ->
+            Log.d(ExecutorsActivity.LOG_TAG, getString(R.string.log_current_thread) + Thread.currentThread().name)
+            t
         }
     }
 }
