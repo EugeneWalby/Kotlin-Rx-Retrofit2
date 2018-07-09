@@ -42,6 +42,6 @@ class EmittedValuesSubscribingActivity : BaseActivity() {
                         {
                             showToast(it.message)
                         })
-        addDisposable(disposable)
+        addDisposable{disposable}
     }
 }

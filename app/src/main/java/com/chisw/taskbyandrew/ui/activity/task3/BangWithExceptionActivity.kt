@@ -25,7 +25,7 @@ class BangWithExceptionActivity : BaseBangActivity() {
                             {
                                 showToast(it.message)
                             })
-            addDisposable(disposable)
+            addDisposable { disposable }
         }
     }
 

@@ -4,15 +4,13 @@ import android.os.Bundle
 import android.util.Log
 import com.chisw.taskbyandrew.R
 import com.chisw.taskbyandrew.ui.activity.base.BaseActivity
-import io.reactivex.Maybe
-import io.reactivex.Observable
-import io.reactivex.Single
+import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 // 1 +
 // 2 +
-// 3 
+// 3 +
 class SourceExtensionsWithCompositeActivity : BaseActivity() {
     companion object {
         const val LOG_TAG = "LOG"
@@ -38,7 +36,7 @@ class SourceExtensionsWithCompositeActivity : BaseActivity() {
                 .divideByThreads()
                 .logThread()
                 .subscribe({ t -> showToast(t) })
-        addDisposable(disposable)
+        addDisposable { disposable }
     }
 
     private fun createObservable() {
@@ -48,14 +46,14 @@ class SourceExtensionsWithCompositeActivity : BaseActivity() {
                         {
                             showToast(it)
                         })
-        addDisposable(disposable)
+        addDisposable { disposable }
     }
 
     private fun createMaybe() {
         val disposable = Maybe.just(MAYBE_MESSAGE)
                 .divideByThreads()
                 .subscribe({ showToast(it) })
-        addDisposable(disposable)
+        addDisposable { disposable }
     }
 
     private fun <T> Single<T>.logThread(): Single<T> {

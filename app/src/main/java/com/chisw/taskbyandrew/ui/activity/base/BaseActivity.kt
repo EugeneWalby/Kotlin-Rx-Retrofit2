@@ -18,13 +18,13 @@ abstract class BaseActivity : AppCompatActivity() {
         compositeDisposable = CompositeDisposable()
     }
 
+    fun addDisposable(disposable: () -> Disposable) {
+        compositeDisposable?.add(disposable())
+    }
+
     override fun onPause() {
         super.onPause()
         compositeDisposable?.dispose()
-    }
-
-    protected fun addDisposable(disposable: Disposable) {
-        compositeDisposable?.add(disposable)
     }
 
     protected fun moveToScreen(screenToMove: AppCompatActivity) {

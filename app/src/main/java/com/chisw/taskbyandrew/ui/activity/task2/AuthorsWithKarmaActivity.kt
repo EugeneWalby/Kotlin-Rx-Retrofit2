@@ -61,7 +61,7 @@ class AuthorsWithKarmaActivity : BaseActivity() {
                             pbProcessing.visibility = View.GONE
                         }
                 )
-        addDisposable(disposable)
+        addDisposable { disposable }
     }
 
     private fun fillRecyclerByAuthors() {

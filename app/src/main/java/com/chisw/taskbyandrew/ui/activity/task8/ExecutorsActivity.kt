@@ -50,7 +50,7 @@ class ExecutorsActivity : BaseActivity() {
                 }, {
                     it.printStackTrace()
                 })
-        addDisposable(disposable)
+        addDisposable{disposable}
     }
 
     private fun logTitlesOfStories(resultList: List<Model.HitsStoryResponse>) {

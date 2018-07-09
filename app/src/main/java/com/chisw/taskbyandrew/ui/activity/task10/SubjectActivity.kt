@@ -2,6 +2,7 @@ package com.chisw.taskbyandrew.ui.activity.task10
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.chisw.taskbyandrew.R
 import com.chisw.taskbyandrew.ui.activity.base.BaseActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -34,7 +35,7 @@ class SubjectActivity : BaseActivity() {
                             list.add(it)
                         }
                 )
-        addDisposable(disposable1)
+        addDisposable { disposable1 }
 
         behaviorSubject.onNext(4)
         behaviorSubject.onNext(5)
@@ -48,6 +49,6 @@ class SubjectActivity : BaseActivity() {
                             }
                         }
                 )
-        addDisposable(disposable2)
+        addDisposable { disposable2 }
     }
 }

@@ -20,7 +20,7 @@ class MaybeToSingleActivity : BaseBangActivity() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ t -> showToast(t) })
-            addDisposable(disposable)
+            addDisposable{disposable}
         }
     }
 

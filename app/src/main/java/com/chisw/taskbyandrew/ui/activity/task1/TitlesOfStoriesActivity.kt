@@ -50,7 +50,7 @@ class TitlesOfStoriesActivity : BaseActivity() {
                             pbProcessing.visibility = View.GONE
                         }
                 )
-        addDisposable(disposable)
+        addDisposable { disposable }
     }
 
     private fun fillStoriesList(result: Model.HitsResponse) {

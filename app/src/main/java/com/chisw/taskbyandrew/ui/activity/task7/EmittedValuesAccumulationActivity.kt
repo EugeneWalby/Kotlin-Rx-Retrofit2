@@ -48,6 +48,6 @@ class EmittedValuesAccumulationActivity : BaseActivity() {
                             showToast(list.sum().toString())
                             pbProcessing.visibility = View.GONE
                         })
-        addDisposable(disposable)
+        addDisposable{disposable}
     }
 }

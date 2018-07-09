@@ -22,7 +22,7 @@ class BangWithoutExceptionActivity : BaseBangActivity() {
                             {
                                 showToast(it)
                             })
-            addDisposable(disposable)
+            addDisposable{disposable}
         }
     }
 
