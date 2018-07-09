@@ -12,8 +12,7 @@ import io.reactivex.schedulers.Schedulers
 
 // 1 +
 // 2 +
-// 3
-// change with generics
+// 3 
 class SourceExtensionsWithCompositeActivity : BaseActivity() {
     companion object {
         const val LOG_TAG = "LOG"
@@ -59,7 +58,7 @@ class SourceExtensionsWithCompositeActivity : BaseActivity() {
         addDisposable(disposable)
     }
 
-    private fun Single<String>.logThread(): Single<String> {
+    private fun <T> Single<T>.logThread(): Single<T> {
         return this.map { t ->
             Log.d(LOG_TAG, getString(R.string.log_current_thread) + Thread.currentThread().name)
             t
@@ -67,17 +66,17 @@ class SourceExtensionsWithCompositeActivity : BaseActivity() {
     }
 }
 
-private fun Single<String>.divideByThreads(): Single<String> {
+private fun <T> Single<T>.divideByThreads(): Single<T> {
     return this.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 }
 
-private fun Observable<String>.divideByThreads(): Observable<String> {
+private fun <T> Observable<T>.divideByThreads(): Observable<T> {
     return this.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 }
 
-private fun Maybe<String>.divideByThreads(): Maybe<String> {
+private fun <T> Maybe<T>.divideByThreads(): Maybe<T> {
     return this.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 }
