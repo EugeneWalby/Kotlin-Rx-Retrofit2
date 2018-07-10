@@ -27,6 +27,7 @@ class SubjectActivity : BaseActivity() {
         behaviorSubject.onNext(2)
         behaviorSubject.onNext(3)
 
+
         val disposable1 = behaviorSubject
                 .observeOn(Schedulers.io())
                 .subscribe(
